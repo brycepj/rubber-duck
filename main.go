@@ -29,7 +29,10 @@ func getAlbums(c *gin.Context) {
 func main() {
 	router := gin.Default()
 	router.GET("/albums", getAlbums)
-
+	router.LoadHTMLGlob("*.html")
+	router.GET("/", func(ctx *gin.Context) {
+			ctx.HTML(http.StatusOK, "index.html", nil)
+	})
 	router.Run("localhost:8080")
 	println("Hello world")
 }
